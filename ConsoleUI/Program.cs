@@ -14,12 +14,20 @@ namespace ConsoleUI
             //BrandTest();
             //ColorTest();
 
+            
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
-            {
-                Console.WriteLine("Araba İsmi: " + car.CarName + " -- Araba Markası: " + car.BrandName + " -- Araba Rengi: " + car.ColorName + " -- Araba Fiyatı: " + car.DailyPrice);
-            }
 
+            var result = carManager.GetCarDetails();
+            if (result.Success)
+            {
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("Araba İsmi: " + car.CarName + " -- Araba Markası: " + car.BrandName + " -- Araba Rengi: " + car.ColorName + " -- Araba Fiyatı: " + car.DailyPrice);
+                }
+                Console.WriteLine(result.Message);
+            }
+            
+            
 
 
         }
@@ -28,34 +36,49 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             Car car1 = new Car();
-            car1.BrandId = 3;
-            car1.ColorId = 3;
-            car1.DailyPrice = 100100;
-            car1.ModelYear = 2002;
-            car1.Description = "Megane 1";
+            car1.BrandId = 1;
+            car1.ColorId = 1;
+            car1.DailyPrice = 750000;
+            car1.ModelYear = 2019;
+            car1.Description = "Megane 4";
+
+            var result1 = carManager.GetAll();
 
             Console.WriteLine("Tümü");
-            foreach (var car in carManager.GetAll())
+            if (result1.Success)
             {
-                Console.WriteLine(car.Description);
+                foreach (var car in result1.Data)
+                {
+                    Console.WriteLine(car.Description);
+                }
+                Console.WriteLine(result1.Message);
             }
+            
             Console.WriteLine("*****************************************");
             Console.WriteLine("ID'si 1 olan");
-            foreach (var car in carManager.GetCarsById(1))
+            var result2 = carManager.GetCarById(1);
+            if (result2.Success)
             {
-                Console.WriteLine(car.Description);
+                Console.WriteLine(result2.Data.Description);
             }
-            //carManager.Add(car1);
-            //Console.WriteLine("Eklendi.");
+            
+            var result3 = carManager.Add(car1);
+            if (result3.Success)
+            {
+                Console.WriteLine(result3.Message);
+            }
+            else
+            {
+                Console.WriteLine(result3.Message);
+            }
+            
 
-            carManager.Delete(car1);
-            Console.WriteLine("Silindi.");
+            //carManager.Delete(car1);
 
             //carManager.Update(car1);
-            //Console.WriteLine("Güncellendi.");
 
         }
-
+        /*
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
@@ -116,6 +139,6 @@ namespace ConsoleUI
 
 
 
-        }
+        }*/
     }
 }
