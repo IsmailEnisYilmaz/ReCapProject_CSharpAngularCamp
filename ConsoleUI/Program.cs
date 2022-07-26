@@ -13,8 +13,90 @@ namespace ConsoleUI
             //CarTest();
             //BrandTest();
             //ColorTest();
+            //CarDetailTest();
+            //UserAddedTest();
+            //CustomerAddedTest();
+            RentAddedTest();
 
-            
+        }
+
+        private static void RentAddedTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental();
+            rental.CarId = 1;
+            rental.CustomerId = 1;
+            rental.RentDate = new DateTime(2022, 08, 26);
+            rental.ReturnDate = new DateTime(2022, 09, 25);
+
+            var result = rentalManager.Add(rental);
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void CustomerAddedTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            Customer customer1 = new Customer();
+            customer1.UserId = 1;
+            customer1.CompanyName = "Kodlama.io";
+
+            var result = customerManager.Add(customer1);
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void UserAddedTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            User user1 = new User();
+            user1.FirstName = "İsmail Enis";
+            user1.LastName = "Yılmaz";
+            user1.Email = "yilmaz.ismailenis@gmail.com";
+            user1.Password = "1111111111";
+
+            User user2 = new User();
+            user2.FirstName = "Mahmut";
+            user2.LastName = "Gül";
+            user2.Email = "mahmut.gul@gmail.com";
+            user2.Password = "2222222222";
+
+            var result1 = userManager.Add(user1);
+            if (result1.Success)
+            {
+                Console.WriteLine(result1.Message);
+            }
+            else
+            {
+                Console.WriteLine(result1.Message);
+            }
+
+            var result2 = userManager.Add(user2);
+            if (result2.Success)
+            {
+                Console.WriteLine(result2.Message);
+            }
+            else
+            {
+                Console.WriteLine(result2.Message);
+            }
+        }
+
+        private static void CarDetailTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result = carManager.GetCarDetails();
@@ -26,10 +108,6 @@ namespace ConsoleUI
                 }
                 Console.WriteLine(result.Message);
             }
-            
-            
-
-
         }
 
         private static void CarTest()
