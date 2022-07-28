@@ -8,7 +8,7 @@ namespace Business.Abstract
 {
     public interface ICustomerService
     {
-        IDataResult<Customer> GetUserById(int id);
+        IDataResult<Customer> GetCustomerById(int id);
         IResult Add(Customer customer);
         IResult Update(Customer customer);
         IResult Delete(Customer customer);
