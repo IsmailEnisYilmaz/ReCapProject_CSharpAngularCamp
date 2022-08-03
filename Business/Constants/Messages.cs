@@ -26,6 +26,6 @@ namespace Business.Constants
         public static string deneme = "deneme";
         public static string RentalAdded = "Araç kiralandı.";
         public static string RentalNotAdded = "Teslim edilmedi. Araç kiralanamadı.";
-
+        public static string CarImagesAdded="Araba resmi sisteme eklendi.";
     }
 }
